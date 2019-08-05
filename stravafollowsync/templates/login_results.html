@@ -8,7 +8,7 @@
 <body>
 <h1>Authorization Results</h1>
 <p>
-	Hi, <strong>{{ athlete.firstname }}</strong>.
+	Hi, <strong>{{ athlete.firstname }} {{ athlete.lastname }}</strong>.
 
   Your access token:
   <pre>{{ access_token|tojson(indent=2) }}</pre>
