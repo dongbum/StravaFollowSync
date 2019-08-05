@@ -1,1 +1,4 @@
+Flask
+Jinja2
+werkzeug
 stravalib
