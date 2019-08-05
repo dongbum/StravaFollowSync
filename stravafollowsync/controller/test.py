@@ -33,6 +33,9 @@ def logged_in():
             session.parmanent = True
             session['access_token'] = access_token
 
-        return render_template('login_results.html', athlete=strava_athlete, access_token=access_token)
+        return render_template('login_results.html',
+                               athlete=strava_athlete,
+                               access_token=access_token)
+
     except Exception as e:
         return render_template('login_error.html', error=str(e))
