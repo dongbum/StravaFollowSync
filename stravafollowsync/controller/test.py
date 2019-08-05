@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from flask import render_template, request, url_for
+from flask import render_template, request, url_for, current_app
 from stravafollowsync.stravafollowsync_blueprint import stravafollowsync
 from stravalib import Client
 
 @stravafollowsync.route('/test')
 def test():
     client = Client()
-    url = client.authorization_url(client_id=MY_STRAVA_CLIENT_ID,
+    url = client.authorization_url(client_id=current_app.config['STRAVA_CLIENT_ID'],
                                    redirect_uri=url_for('.logged_in', _external=True),
                                    approval_prompt='auto')
 
@@ -23,8 +23,8 @@ def logged_in():
     else:
         code = request.args.get('code')
         client = Client()
-        access_token = client.exchange_code_for_token(client_id=MY_STRAVA_CLIENT_ID,
-                                                      client_secret=MY_STRAVA_CLIENT_SECRET,
+        access_token = client.exchange_code_for_token(client_id=current_app.config['STRAVA_CLIENT_ID'],
+                                                      client_secret=current_app.config['STRAVA_CLIENT_SECRET'],
                                                       code=code)
         strava_athlete = client.get_athlete()
 
