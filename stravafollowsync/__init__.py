@@ -18,6 +18,8 @@ def create_app():
     sfc_app.config.from_pyfile('config.cfg', silent=True)
     print_settings(sfc_app.config.items())
 
+    sfc_app.secret_key = sfc_app.config['SESSION_COOKIE_NAME']
+
     from stravafollowsync.stravafollowsync_blueprint import stravafollowsync
     sfc_app.register_blueprint(stravafollowsync)
 
